@@ -1,0 +1,22 @@
+<ion-menu [content]="content" >
+        <ion-header >
+          <ion-toolbar color="primary">
+            <ion-title>Compte</ion-title>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content >
+          <ion-list >
+              <ion-item>
+                  <img style="width: 260px; height: 260px;text-align:center" src="https://infoeventv2.herokuapp.com/images/user.png"/>
+                  <br/>
+                  <h2>{{email}}</h2>
+                  <br/>
+              </ion-item>
+            <button ion-item (click)="goMonCompte()">Mon Compte</button>
+            <button ion-item (click)="goGroupe()">Groupes</button>
+            <button ion-item (click)="goAmis()">Amis</button>
+            <button ion-item (click)="goEvent()">Evenements</button>
+          </ion-list>
+        </ion-content>
+      </ion-menu>
+<ion-nav [root]="rootPage"  #content></ion-nav>
