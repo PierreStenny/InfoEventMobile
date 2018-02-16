@@ -1,0 +1,86 @@
+<!--
+  Generated template for the MesInvitationPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>mesInvitation</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    
+      <div padding>
+        <ion-segment [(ngModel)]="segment">
+          <ion-segment-button value="event">
+            evenement
+          </ion-segment-button>
+          <ion-segment-button value="partenaire">
+            Partenaria 
+          </ion-segment-button>
+        </ion-segment>
+      </div>
+      <div  [ngSwitch]="segment" >
+        
+        <ion-list *ngSwitchCase="'event'">
+          <ion-card *ngFor="let inv of this.Invitation ">
+            <ion-item>
+              <ion-avatar item-start (click)="goInfoPerso(inv.sender)">
+                <img src="https://infoeventv2.herokuapp.com/images/Event.jpg">
+              </ion-avatar>
+              <h2>{{inv.nomSender}}</h2>
+              <p>{{inv.prenomSender}}</p>
+            </ion-item>
+          
+            <ion-card-content>
+              <h2>Objet : {{inv.nomEvent}} <button ion-button item-end clear (click)="getInfoEvent(inv.idEvent)">voir</button></h2>
+            </ion-card-content>
+            <ion-row>
+              <ion-col>
+                <button ion-button icon-left clear small (click)="AcceptInvitation(inv.idUser,inv.idEvent)">
+                  <div>Accepter</div>
+                </button>
+              </ion-col>
+              <ion-col>
+                <button ion-button icon-left clear small (click)="RefuseInvitation(inv.idUser,inv.idEvent)">
+                  <div>Refuser</div>
+                </button>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-list>
+
+        <ion-list *ngSwitchCase="'partenaire'">
+          <ion-card *ngFor="let invp of this.InvitationPart ">
+            <ion-item>
+              <ion-avatar item-start>
+                <img src="https://infoeventv2.herokuapp.com/images/Event.jpg">
+              </ion-avatar>
+              <h2>{{invp.nomSender}}</h2>
+              <p>{{invp.prenomSender}}</p>
+            </ion-item>
+          
+            <ion-card-content>
+              <h2>Objet : {{invp.nomEvent}} <button ion-button item-end clear (click)="getInfoEvent(invp.idEvent)">voir</button></h2>
+            </ion-card-content>
+            <ion-row>
+              <ion-col>
+                <button ion-button icon-left clear small (click)="AcceptInvitationPart(invp.idUser,invp.idEvent)">
+                  <div>Accepter</div>
+                </button>
+              </ion-col>
+              <ion-col>
+                <button ion-button icon-left clear small (click)="RefuseInvitationPart(invp.idUser,invp.idEvent)">
+                  <div>Refuser</div>
+                </button>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-list>
+      </div>
+</ion-content>

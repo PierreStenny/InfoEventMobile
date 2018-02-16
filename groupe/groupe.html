@@ -1,0 +1,32 @@
+<!--
+  Generated template for the GroupePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Groupe</ion-title>
+    <ion-buttons end>
+        <button ion-button icon-only (click)="addGroupe()">
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list >
+    <ion-item *ngFor="let gr of this.Groupe ">
+      <ion-thumbnail item-start (click)="goInfoGroupe(gr.id)">
+        <img src="https://infoeventv2.herokuapp.com/images/info.jpg">
+      </ion-thumbnail>
+        <h2>{{gr.nom}}</h2>
+        <p>{{gr.description}}</p>
+        <button icon-only item-end (click)="goToolGroupe(gr.id)"> <ion-icon name="options"></ion-icon></button>
+    </ion-item>
+  </ion-list>
+</ion-content>

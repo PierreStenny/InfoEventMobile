@@ -1,0 +1,45 @@
+<!--
+  Generated template for the ToolGroupePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>toolGroupe</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card>
+    <ion-item *ngIf="this.Groupe">
+        <ion-avatar item-start>
+          <img src="https://infoeventv2.herokuapp.com/images/user.png">
+        </ion-avatar>
+        <h3>{{this.Groupe.nomAdmin}}</h3>
+        <p>{{this.Groupe.prenomAdmin}}</p>
+      </ion-item>
+  <ion-card-content *ngIf="this.Groupe">
+    <img style="width: 290px; height: 220px;text-align:center" src="https://infoeventv2.herokuapp.com/images/info.jpg"/>
+    <h1>{{this.Groupe.nom}}</h1>
+    <br/>
+    <h2>Description : {{this.Groupe.description}}</h2>
+    <h2>Pays: {{this.Groupe.pays}}</h2>
+    <h2>Region : {{this.Groupe.region}}</h2>
+    <h2>Ville : {{this.Groupe.ville}}</h2>
+    <br/>
+    <h2>Groupe : {{this.Groupe.type}}</h2>
+    <br/>
+    <ion-item><button ion-button (click)="goSuggest(this.Groupe.id)">Ajouter un Membre</button></ion-item>
+    <ion-item><button ion-button clear >Ajouter des photos</button></ion-item>
+    <ion-item>
+      <ion-icon name="people" item-start (click)="Jaime(this.Evenement.id)"></ion-icon>
+      Membres
+      <ion-badge item-end >{{this.Groupe.nombre}}</ion-badge>
+    </ion-item>
+  </ion-card-content>
+</ion-card>
+</ion-content>

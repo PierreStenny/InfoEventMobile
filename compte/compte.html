@@ -1,0 +1,96 @@
+<!--
+  Generated template for the ComptePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+<ion-navbar color="primary">
+   
+  <ion-buttons start padding>
+    <button ion-button icon-only menu-toggle (click)="openMenu()">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-buttons>
+  <ion-title>compte</ion-title>
+</ion-navbar>
+</ion-header>
+<ion-content padding>
+  <div padding>
+    <ion-segment [(ngModel)]="segment">
+      <ion-segment-button value="event">
+        Evenement
+      </ion-segment-button>
+      <ion-segment-button value="suggest">
+        Suggestion d'amis
+      </ion-segment-button>
+      <ion-segment-button value="group">
+        Groupe 
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  
+  <div  [ngSwitch]="segment" >
+    <ion-list *ngSwitchCase="'event'"  >
+      <ion-card *ngFor="let eve of this.Evenement ">
+          
+          <img src="https://infoeventv2.herokuapp.com/images/event.jpg" (click)="getInfoEvent(eve.id)">
+        
+          <ion-card-content>
+              <h1>Categorie {{eve.type}}</h1>
+            <h2>{{eve.nom}}</h2>
+            <p>{{eve.description}}</p>
+          </ion-card-content>
+          <ion-row>
+            <ion-col center text-left>
+              <ion-note>
+               Date : {{eve.date}}
+              </ion-note>
+            </ion-col>
+          </ion-row>
+         
+          <ion-row>
+            <ion-col>
+              <button ion-button icon-left clear small (click)="Jaime(this.eve.id)">
+                <ion-icon name="thumbs-up"></ion-icon>
+                <div>{{eve.like}} J'aime</div>
+              </button>
+            </ion-col>
+            <ion-col>
+              <button ion-button icon-left clear small (click)="goCommentaire(this.eve.id)">
+                <ion-icon name="text"></ion-icon>
+                <div>{{eve.comment}} Commentaire</div>
+              </button>
+            </ion-col>
+           
+          </ion-row>
+          <button ion-button icon-center small (click)="goTypeEvent(this.eve.type)">
+            Voir Plus ...
+          </button>
+        </ion-card>
+    </ion-list>
+  
+    <ion-list *ngSwitchCase="'suggest'">
+      <ion-item *ngFor="let sugg of this.Suggestion ">
+        <ion-thumbnail item-start (click)="goInfoPerso(sugg.id)">
+          <img src="https://infoeventv2.herokuapp.com/images/user.png">
+        </ion-thumbnail>
+        <h3>{{sugg.nom}}</h3>
+        <h3>{{sugg.prenom}}</h3>
+        <h3>Ville :{{sugg.ville}}</h3>
+        <button ion-button item-end (click)="demande(sugg.id)">Ajouter</button>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'group'">
+      <ion-item *ngFor="let gr of this.Groupe ">
+        <ion-thumbnail item-start >
+          <img src="https://infoeventv2.herokuapp.com/images/info.jpg">
+        </ion-thumbnail>
+          <h2>{{gr.nom}}</h2>
+          <p>{{gr.description}}</p>
+          <button button clear item-end (click)="goInfoGroupe(gr.id)"> Voir</button>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
